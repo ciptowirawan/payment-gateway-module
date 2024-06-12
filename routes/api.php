@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/payment/checkInquiry?{id}&{user_id}', [Controller::class, 'checkInquiry']);
+Route::get('/payment/checkInquiry', [Controller::class, 'checkInquiry']);
+Route::get('/payment/updateInquiry', [Controller::class, 'updateInquiry']);

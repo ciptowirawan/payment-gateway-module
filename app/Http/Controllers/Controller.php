@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use App\Http\Resources\TestResource;
 use App\Http\Resources\InquiryResource;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Routing\Controller as BaseController;
@@ -17,18 +19,19 @@ class Controller extends BaseController
         $http = new Client;
     
         try {
-            $response = $http->get('http://127.0.0.1:8000/showInquiry', [
+            $response = $http->get('http://127.0.0.1:8000/api/payment/showInquiry', [
                 'query' => [
-                    'id' => $request->query('inquiry'),
+                    'id' => $request->query('id'),
+                    'user_id' => $request->query('user_id'),
                 ],
             ]);
             
             $responseBody = json_decode((string) $response->getBody(), true);
 
-            return new InquiryResource($responseBody);
+            return new InquiryResource($responseBody['success'], $responseBody['message'], $responseBody['data']);
             
         } catch (BadResponseException $e) {
-            return response()->json('Unable to retrieve access token', $e->getCode());
+            return response()->json($e->getMessage(), $e->getCode());
         }
     }
 
@@ -36,7 +39,7 @@ class Controller extends BaseController
         $http = new Client;
     
         try {
-            $response = $http->post('http://127.0.0.1:8000/updateInquiry', [
+            $response = $http->post('http://127.0.0.1:8000/api/payment/updateInquiry', [
                 'query' => [
                     'id' => $request->query('inquiry'),
                     'user_id' => $request->query('user_id'),
@@ -46,10 +49,10 @@ class Controller extends BaseController
             
             $responseBody = json_decode((string) $response->getBody(), true);
 
-            return new InquiryResource($responseBody);
+            return new InquiryResource($responseBody['success'], $responseBody['message'], $responseBody['data']);
             
         } catch (BadResponseException $e) {
-            return response()->json('Unable to retrieve access token', $e->getCode());
+            return response()->json($e->getMessage(), $e->getCode());
         }
     }
 }
