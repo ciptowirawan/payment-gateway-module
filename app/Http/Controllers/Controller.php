@@ -42,7 +42,7 @@ class Controller extends BaseController
             $response = $http->post('http://127.0.0.1:8000/api/payment/updateInquiry', [
                 'query' => [
                     'id' => $request->query('inquiry'),
-                    'user_id' => $request->query('user_id'),
+                    'amount' => $request->query('amount'),
                     'status' => 'SUCCESS'
                 ],
             ]);
