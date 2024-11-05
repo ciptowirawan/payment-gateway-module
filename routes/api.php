@@ -15,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/payment/checkInquiry', [Controller::class, 'checkInquiry']);
-Route::get('/payment/updateInquiry', [Controller::class, 'updateInquiry']);
+// Route::get('/payment/checkInquiry', [Controller::class, 'checkInquiry']);
+Route::post('/payment/checkInquiry', [Controller::class, 'checkInquiry']);
+Route::post('/payment/updateInquiry', [Controller::class, 'updateInquiry']);
