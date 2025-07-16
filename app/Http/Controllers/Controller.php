@@ -51,7 +51,7 @@ class Controller extends BaseController
             ]);
     
             // Send request to the show route
-            $response = $http->get('http://127.0.0.1:8000/api/payment/showInquiry', [
+            $response = $http->get('http://103.127.98.225:8081/api/payment/showInquiry', [
                 'query' => [
                     'id' => $validatedData['virtualAccountNo'],
                 ],
@@ -111,7 +111,7 @@ class Controller extends BaseController
             ]);
     
             // Send request to the update route
-            $response = $http->post('http://127.0.0.1:8000/api/payment/updateInquiry', [
+            $response = $http->post('http://103.127.98.225:8081/api/payment/updateInquiry', [
                 'query' => [
                     'id' => $validatedData['virtualAccountNo'],
                     'amount' => $validatedData['amount']['value'],
